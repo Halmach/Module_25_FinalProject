@@ -9,14 +9,14 @@ namespace e_library.DAL.Repositories
 {
     public class BookRepository : BaseRepository
     {
-        // Вывести всех книг
+        // Вывести все книги
         public List<Book> SelectAllBooks()
         {
             return db.Books.ToList();
         }
 
         // Выбор книги по id
-        public Book SelectBookByID(string ID)
+        public Book SelectBookByID(int ID)
         {
             return db.Books.Where(book => book.ID == ID).FirstOrDefault();
         }
@@ -56,7 +56,7 @@ namespace e_library.DAL.Repositories
         }
 
         // изменить год выпуска у книги
-        public bool UpdateBookDateByID(string ID, int year)
+        public bool UpdateBookDateByID(int ID, int year)
         {
             var book = db.Books.Where(book => book.ID == ID).FirstOrDefault();
 

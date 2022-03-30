@@ -16,7 +16,7 @@ namespace e_library.DAL.Repositories
         }
 
         // Выбор пользователя по id
-        public User SelectUserByID(string ID)
+        public User SelectUserByID(int ID)
         {
             return db.Users.Where(user => user.Id == ID).FirstOrDefault();
         }
@@ -56,7 +56,7 @@ namespace e_library.DAL.Repositories
         }
 
         // изменить имя пользователя по id
-        public bool UpdateUserNameByID(string ID, string newName)
+        public bool UpdateUserNameByID(int ID, string newName)
         {
             var user = db.Users.Where(user => user.Id == ID).FirstOrDefault();
 

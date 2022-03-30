@@ -16,8 +16,14 @@ namespace e_library.DAL
         // Объекты таблицы Books
         public DbSet<Book> Books { get; set; }
 
+
+        // Объекты таблицы IssuedBooks
+        public DbSet<IssuedBook> IssuedBooks { get; set; }
+
+
         public AppContext()
         {
+            Database.EnsureDeleted();
             Database.EnsureCreated();
         }
 

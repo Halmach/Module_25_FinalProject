@@ -11,5 +11,7 @@ namespace e_library.DAL.Entities
         public int Id { get; set; }
         public string Name { get; set; }
 
+        // Навигационное свойство
+        public Book Book { get; set; }
     }
 }

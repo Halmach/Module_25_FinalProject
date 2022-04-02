@@ -20,6 +20,12 @@ namespace e_library.DAL
         // Объекты таблицы IssuedBooks
         public DbSet<IssuedBook> IssuedBooks { get; set; }
 
+        // Объекты таблицы Genre
+        public DbSet<Genre> Genres { get; set; }
+
+        // Объекты таблицы Author
+        public DbSet<Author> Authors { get; set; }
+
 
         public AppContext()
         {
@@ -29,7 +35,7 @@ namespace e_library.DAL
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer(@"Data Source =DESKTOP-45Q7VOT\SQLEXPRESS01;DataBase =EF;Trusted_Connection=True;TrustServerCertificate=true; ");
+            optionsBuilder.UseSqlServer(@"Data Source =DESKTOP-45Q7VOT\SQLEXPRESS01;DataBase =E_LIBRARY;Trusted_Connection=True;TrustServerCertificate=true; ");
         }
     }
 }

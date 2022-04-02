@@ -13,13 +13,17 @@ namespace e_library.BLL
     {
         private UserRepository userRepository;
         private BookRepository bookRepository;
-        private IssuedBookRepository IssuedBookRepository;
+        private IssuedBookRepository issuedBookRepository;
+        private GenreRepository genreRepository;
+        private AuthorRepository authorRepository;
 
         public LibraryServices()
         {
             this.userRepository = new UserRepository();
             this.bookRepository = new BookRepository();
-            this.IssuedBookRepository = new IssuedBookRepository();
+            this.issuedBookRepository = new IssuedBookRepository();
+            this.genreRepository  = new GenreRepository();
+            this.authorRepository = new AuthorRepository();
         }
 
         public bool AddUser(UserRegistrationData userRegistrationData)
@@ -52,7 +56,21 @@ namespace e_library.BLL
             var issuedBook = new IssuedBook() { BookID = book.ID, UserID = user.Id };
             user.Books.Add(issuedBook);
 
-            return IssuedBookRepository.AddIssuedEntry(issuedBook);    
+            return issuedBookRepository.AddIssuedEntry(issuedBook);    
+        }
+
+        public bool AddGenre(string genreName)
+        {
+            var genre = new Genre() { Name = genreName };
+
+            return genreRepository.AddNewGenre(genre);
+        }
+
+        public bool AddAuthor(string authorSurName, string authorName)
+        {
+            var author = new Author() { SurName = authorSurName, Name = authorName};
+
+            return authorRepository.AddNewAuthor(author);
         }
     }
 }

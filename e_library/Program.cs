@@ -17,7 +17,9 @@ namespace e_library
                     Console.WriteLine("1 - Добавить пользователя");
                     Console.WriteLine("2 - Добавить книгу");
                     Console.WriteLine("3 - Выдать книгу пользователю");
-                    Console.WriteLine("4 - Выйти из программы");
+                    Console.WriteLine("4 - Добавить книжный жанр");
+                    Console.WriteLine("5 - Добавить книжный жанр");
+                    Console.WriteLine("6 - Выйти из программы");
 
                     switch (Console.ReadLine().Trim().ToLower())
                     {
@@ -67,8 +69,30 @@ namespace e_library
 
                                 break;
                             }
-
                         case "4":
+                            {
+                                Console.WriteLine("Введите Название жанра:");
+                                var genreName = Console.ReadLine().Trim();
+
+                                if (!libraryServices.AddGenre(genreName))
+                                    throw new Exception("Ошибка добавления жанра");
+
+                                break;
+                            }
+                        case "5":
+                            {
+                                Console.WriteLine("Введите фамилию автора:");
+                                var surName = Console.ReadLine().Trim();
+
+                                Console.WriteLine("Введите имя автора:");
+                                var name = Console.ReadLine().Trim();
+
+                                if (!libraryServices.AddAuthor(surName,name))
+                                    throw new Exception("Ошибка добавления автора");
+
+                                break;
+                            }
+                        case "6":
                             {
                                 return;
                             }

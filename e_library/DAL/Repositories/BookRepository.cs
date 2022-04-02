@@ -24,7 +24,8 @@ namespace e_library.DAL.Repositories
         // Добавление книги в бд
         public bool AddNewBook(Book book)
         {
-            try
+            t
+
             {
                 db.Books.Add(book);
             }

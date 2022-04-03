@@ -91,5 +91,14 @@ namespace e_library.DAL.Repositories
             return db.Books.Include(a => a.Genre)
                     .Count(book => book.Genre.Name == genreName);
         }
+
+        // Получать булевый флаг о том,
+        // есть ли книга определенного автора и с определенным названием в библиотеке
+        public bool GetFlagOfBookByAuthorAndTitle(string authorSurName, string authorName, string bookName)
+        {
+            return db.Books.Include(a => a.Author)
+                    .Any(book => book.Title == bookName && book.Author.Name == authorName && 
+                         book.Author.SurName == authorSurName);
+        }
     }
 }

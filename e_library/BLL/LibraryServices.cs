@@ -99,5 +99,10 @@ namespace e_library.BLL
         {
             return bookRepository.GetCountOfBooksByGenre(genreName);
         }
+
+        public bool GetFlagOfBookByAuthorAndTitle(string surName, string name, string bookTitle)
+        {
+            return bookRepository.GetFlagOfBookByAuthorAndTitle(surName, name, bookTitle);
+        }
     }
 }

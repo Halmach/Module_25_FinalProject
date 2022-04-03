@@ -109,5 +109,10 @@ namespace e_library.BLL
         {
             return issuedBookRepository.GetFlagOfBookThatUserGetBook(userName,bookTitle);
         }
+
+        public int GetCountOfBookThatUserGot(string userName)
+        {
+            return issuedBookRepository.GetCountOfBookThatUserGot(userName);
+        }
     }
 }

@@ -39,5 +39,12 @@ namespace e_library.DAL.Repositories
             return db.IssuedBooks.Include(u => u.User).Include(b => b.Book)
                     .Any(book => book.User.Name == userName && book.Book.Title == bookName);
         }
+
+        // Получить количество книг на руках у пользователя
+        public int GetCountOfBookThatUserGot(string userName)
+        {
+            return db.IssuedBooks.Include(u => u.User).
+                    Count(book => book.User.Name == userName);
+        }
     }
 }

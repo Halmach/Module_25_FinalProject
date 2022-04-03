@@ -89,5 +89,10 @@ namespace e_library.BLL
 
             return result.ToList();
         }
+
+        public  int GetCountOfBooksByAuthor(string surName, string name)
+        {
+            return bookRepository.GetCountOfBooksByAuthor(surName, name);
+        }
     }
 }

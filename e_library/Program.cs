@@ -6,10 +6,10 @@ namespace e_library
 {
     internal class Program
     {
-       // public static LibraryServices libraryServices = new LibraryServices();
+        public static LibraryServices libraryServices = new LibraryServices();
         static void Main(string[] args)
         {
-            LibraryServices libraryServices = new LibraryServices();
+            //LibraryServices libraryServices = new LibraryServices();
             while (true)
             {
                 //try
@@ -20,6 +20,7 @@ namespace e_library
                     Console.WriteLine("4 - Добавить книжный жанр");
                     Console.WriteLine("5 - Добавить автора");
                     Console.WriteLine("6 - Получить список книг определенного жанра");
+                    Console.WriteLine("7 - Получить количество книг определенного автора");
                     Console.WriteLine("15 - Выйти из программы");
 
                     switch (Console.ReadLine().Trim().ToLower())
@@ -125,11 +126,25 @@ namespace e_library
                                     Console.Write(item.Genre);
                                     Console.Write("\t");
                                     Console.Write(item.AuthorSurName + " " + item.AuthorName);
-                            }
+                                }
                             Console.WriteLine();
                                 break;
                             }
-                        case "15":
+                    case "7":
+                        {
+                            Console.WriteLine("Введите фамилию автора:");
+                            var surName = Console.ReadLine().Trim();
+
+                            Console.WriteLine("Введите имя автора:");
+                            var name = Console.ReadLine().Trim();
+
+                            int result = libraryServices.GetCountOfBooksByAuthor(surName, name);
+                            Console.WriteLine("Автор: " + surName + " " + name);
+                            Console.WriteLine("Количество книг: " + result);
+                            Console.WriteLine();
+                            break;
+                        }
+                    case "15":
                             {
                                 return;
                             }

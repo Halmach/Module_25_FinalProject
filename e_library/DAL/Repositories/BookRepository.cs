@@ -77,5 +77,12 @@ namespace e_library.DAL.Repositories
                      && book.ReleaseYser <= yearTo)
                     .ToList();
         }
+
+        // Получить количество книг определенного автора в библиотеке
+        public int GetCountOfBooksByAuthor(string surName, string name)
+        {
+            return db.Books.Include(a => a.Author)
+                    .Count(book => book.Author.Name == name && book.Author.SurName == surName);
+        }
     }
 }

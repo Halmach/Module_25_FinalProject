@@ -1,4 +1,5 @@
 ﻿using e_library.DAL.Entities;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -30,6 +31,13 @@ namespace e_library.DAL.Repositories
             db.SaveChanges();
 
             return true;
+        }
+
+        // Получить булевый флаг о том, есть ли определенная книга на руках у пользователя.
+        public bool GetFlagOfBookThatUserGetBook(string userName, string bookName)
+        {
+            return db.IssuedBooks.Include(u => u.User).Include(b => b.Book)
+                    .Any(book => book.User.Name == userName && book.Book.Title == bookName);
         }
     }
 }

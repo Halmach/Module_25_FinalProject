@@ -92,7 +92,7 @@ namespace e_library.DAL.Repositories
                     .Count(book => book.Genre.Name == genreName);
         }
 
-        // Получать булевый флаг о том,
+        // Получить булевый флаг о том,
         // есть ли книга определенного автора и с определенным названием в библиотеке
         public bool GetFlagOfBookByAuthorAndTitle(string authorSurName, string authorName, string bookName)
         {
@@ -100,5 +100,7 @@ namespace e_library.DAL.Repositories
                     .Any(book => book.Title == bookName && book.Author.Name == authorName && 
                          book.Author.SurName == authorSurName);
         }
+
+    
     }
 }

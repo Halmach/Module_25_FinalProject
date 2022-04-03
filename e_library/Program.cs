@@ -23,6 +23,7 @@ namespace e_library
                     Console.WriteLine("7 - Получить количество книг определенного автора");
                     Console.WriteLine("8 - Получить количество книг определенного жанра");
                     Console.WriteLine("9 - Проверка наличия книги в библиотеке");
+                    Console.WriteLine("10 - Проверка наличия книги на руках у пользователя");
                     Console.WriteLine("15 - Выйти из программы");
 
                     switch (Console.ReadLine().Trim().ToLower())
@@ -171,6 +172,20 @@ namespace e_library
                             bool result = libraryServices.GetFlagOfBookByAuthorAndTitle(surName, name, bookTitle);
                             Console.WriteLine("Автор: " + surName + " " + name);
                             Console.WriteLine("книга в наличии: " + (result ? "да" : "нет"));
+                            Console.WriteLine();
+                            break;
+                        }
+                    case "10":
+                        {
+                            Console.WriteLine("Введите имя пользователя:");
+                            var userName = Console.ReadLine().Trim();
+
+                            Console.WriteLine("Введите название книги:");
+                            var bookTitle = Console.ReadLine().Trim();
+
+                            bool result = libraryServices.GetFlagOfBookThatUserGetBook(userName, bookTitle);
+                            Console.WriteLine("Пользователь: " + userName);
+                            Console.WriteLine("книга на руках: " + (result ? "да" : "нет"));
                             Console.WriteLine();
                             break;
                         }

@@ -21,6 +21,7 @@ namespace e_library
                     Console.WriteLine("5 - Добавить автора");
                     Console.WriteLine("6 - Получить список книг определенного жанра");
                     Console.WriteLine("7 - Получить количество книг определенного автора");
+                    Console.WriteLine("8 - Получить количество книг определенного жанра");
                     Console.WriteLine("15 - Выйти из программы");
 
                     switch (Console.ReadLine().Trim().ToLower())
@@ -144,10 +145,21 @@ namespace e_library
                             Console.WriteLine();
                             break;
                         }
+                    case "8":
+                        {
+                            Console.WriteLine("Введите название жанра:");
+                            var genreName = Console.ReadLine().Trim().ToLower();
+
+                            int result = libraryServices.GetCountOfBooksByGenre(genreName);
+                            Console.WriteLine("Жанр: " + genreName);
+                            Console.WriteLine("Количество книг: " + result);
+                            Console.WriteLine();
+                            break;
+                        }
                     case "15":
-                            {
-                                return;
-                            }
+                        {
+                            return;
+                        }
                     }
                 //}
                 //catch (Exception e)

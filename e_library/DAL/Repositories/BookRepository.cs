@@ -84,5 +84,12 @@ namespace e_library.DAL.Repositories
             return db.Books.Include(a => a.Author)
                     .Count(book => book.Author.Name == name && book.Author.SurName == surName);
         }
+
+        // Получить количество книг определенного жанра в библиотеке
+        public int GetCountOfBooksByGenre(string genreName)
+        {
+            return db.Books.Include(a => a.Genre)
+                    .Count(book => book.Genre.Name == genreName);
+        }
     }
 }

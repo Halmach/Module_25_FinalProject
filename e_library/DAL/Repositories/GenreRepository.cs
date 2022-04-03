@@ -25,5 +25,10 @@ namespace e_library.DAL.Repositories
 
             return true;
         }
+
+        public Genre GetGenreByID(int genreId)
+        {
+            return db.Genres.Where(genre => genre.Id == genreId).FirstOrDefault();
+        }
     }
 }

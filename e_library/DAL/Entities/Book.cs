@@ -15,10 +15,10 @@ namespace e_library.DAL.Entities
 
         public int GenreId { get; set; }
 
-        public int AutorID { get; set; }
+        public int AuthorID { get; set; }
 
         // Навигационное свойство
-        public Genre GenreOfBook { get; set; }
+        public Genre Genre { get; set; }
 
         // Навигационое свойство
         public Author Author { get; set; }

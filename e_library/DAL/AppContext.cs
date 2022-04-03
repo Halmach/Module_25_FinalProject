@@ -29,7 +29,7 @@ namespace e_library.DAL
 
         public AppContext()
         {
-            Database.EnsureDeleted();
+            //Database.EnsureDeleted();
             Database.EnsureCreated();
         }
 

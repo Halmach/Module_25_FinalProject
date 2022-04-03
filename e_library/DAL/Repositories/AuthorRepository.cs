@@ -1,4 +1,5 @@
-﻿using e_library.DAL.Entities;
+﻿using e_library.BLL.Models;
+using e_library.DAL.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,6 +25,11 @@ namespace e_library.DAL.Repositories
             db.SaveChanges();
 
             return true;
+        }
+
+        public Author GetAuthorByID(int authorId)
+        {
+            return db.Authors.Where(author => author.Id == authorId).FirstOrDefault();
         }
     }
 }

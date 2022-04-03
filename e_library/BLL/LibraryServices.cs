@@ -39,8 +39,13 @@ namespace e_library.BLL
                 
                 Title = bookAdditionData.Title, 
                 Description = bookAdditionData.Description, 
-                ReleaseYser = bookAdditionData.ReleaseYser
+                ReleaseYser = bookAdditionData.ReleaseYser,
+                AuthorID = bookAdditionData.AuthorId,
+                GenreId = bookAdditionData.GenreId
             };
+
+            //anyBook.Author = authorRepository.GetAuthorByID(bookAdditionData.AuthorId);
+            //anyBook.Genre = genreRepository.GetGenreByID(bookAdditionData.GenreId);
 
             return bookRepository.AddNewBook(anyBook);
         }
@@ -71,6 +76,18 @@ namespace e_library.BLL
             var author = new Author() { SurName = authorSurName, Name = authorName};
 
             return authorRepository.AddNewAuthor(author);
+        }
+
+        public List<BookModel> GetBooksByGenreAndYears(string genre, int yearFrom, int yearTo)
+        {
+            var bookList = bookRepository.GetBooksByGenreAndYears(genre, yearFrom, yearTo);
+
+            var result = bookList.Select(
+                b => new BookModel { ID = b.ID, Title = b.Title, 
+                Description = b.Description, ReleaseYser = b.ReleaseYser, 
+                AuthorSurName = b.Author.SurName, AuthorName = b.Author.Name, Genre = b.Genre.Name });
+
+            return result.ToList();
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using e_library.DAL.Entities;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,8 +25,7 @@ namespace e_library.DAL.Repositories
         // Добавление книги в бд
         public bool AddNewBook(Book book)
         {
-            t
-
+            try
             {
                 db.Books.Add(book);
             }
@@ -67,6 +67,15 @@ namespace e_library.DAL.Repositories
             db.SaveChanges();
 
             return true;
+        }
+
+        // Получить список книг определенного жанра и вышедших между определенными годами
+        public List<Book> GetBooksByGenreAndYears(string genre, int yearFrom, int yearTo)
+        {
+            return db.Books.Include(g => g.Genre).Include(a => a.Author)
+                    .Where(book => book.Genre.Name == genre && book.ReleaseYser >= yearFrom 
+                     && book.ReleaseYser <= yearTo)
+                    .ToList();
         }
     }
 }

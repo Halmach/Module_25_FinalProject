@@ -6,20 +6,21 @@ namespace e_library
 {
     internal class Program
     {
-        public static LibraryServices libraryServices = new LibraryServices();
+       // public static LibraryServices libraryServices = new LibraryServices();
         static void Main(string[] args)
         {
-            
-            while(true)
+            LibraryServices libraryServices = new LibraryServices();
+            while (true)
             {
-                try
-                {
+                //try
+                //{
                     Console.WriteLine("1 - Добавить пользователя");
                     Console.WriteLine("2 - Добавить книгу");
                     Console.WriteLine("3 - Выдать книгу пользователю");
                     Console.WriteLine("4 - Добавить книжный жанр");
-                    Console.WriteLine("5 - Добавить книжный жанр");
-                    Console.WriteLine("6 - Выйти из программы");
+                    Console.WriteLine("5 - Добавить автора");
+                    Console.WriteLine("6 - Получить список книг определенного жанра");
+                    Console.WriteLine("15 - Выйти из программы");
 
                     switch (Console.ReadLine().Trim().ToLower())
                     {
@@ -51,6 +52,14 @@ namespace e_library
                                 Console.WriteLine("Введите год выпуска книги:");
                                 bookAdditionData.ReleaseYser = Convert.ToInt32(Console.ReadLine().Trim());
 
+
+                                Console.WriteLine("Введите id автора:");
+                                bookAdditionData.AuthorId = Convert.ToInt32(Console.ReadLine().Trim());
+
+
+                                Console.WriteLine("Введите id жанра:");
+                                bookAdditionData.GenreId = Convert.ToInt32(Console.ReadLine().Trim());
+
                                 if (!libraryServices.AddBook(bookAdditionData))
                                     throw new Exception("Ошибка при добавлении книги");
 
@@ -72,7 +81,7 @@ namespace e_library
                         case "4":
                             {
                                 Console.WriteLine("Введите Название жанра:");
-                                var genreName = Console.ReadLine().Trim();
+                                var genreName = Console.ReadLine().Trim().ToLower();
 
                                 if (!libraryServices.AddGenre(genreName))
                                     throw new Exception("Ошибка добавления жанра");
@@ -94,14 +103,42 @@ namespace e_library
                             }
                         case "6":
                             {
+                                Console.WriteLine("Введите жанр:");
+                                var genreName = Console.ReadLine().Trim().ToLower();
+
+                                Console.WriteLine("Введите с какого по какой год выпущены книги:");
+                                var yearFrom = Convert.ToInt32(Console.ReadLine().Trim());
+                                var yearTo = Convert.ToInt32(Console.ReadLine().Trim());
+
+                                var result =  libraryServices.GetBooksByGenreAndYears(genreName,yearFrom,yearTo);
+
+                                foreach (var item in result)
+                                {
+                                    Console.Write(item.ID);
+                                    Console.Write("\t");
+                                    Console.Write(item.Title);
+                                    Console.Write("\t");
+                                    Console.Write(item.Description);
+                                    Console.Write("\t");
+                                    Console.Write(item.ReleaseYser);
+                                    Console.Write("\t");
+                                    Console.Write(item.Genre);
+                                    Console.Write("\t");
+                                    Console.Write(item.AuthorSurName + " " + item.AuthorName);
+                            }
+                            Console.WriteLine();
+                                break;
+                            }
+                        case "15":
+                            {
                                 return;
                             }
                     }
-                }
-                catch (Exception e)
-                {
-                    Console.WriteLine(e.Message);
-                }
+                //}
+                //catch (Exception e)
+                //{
+                //    Console.WriteLine(e.Message);
+                //}
                
             }
         }

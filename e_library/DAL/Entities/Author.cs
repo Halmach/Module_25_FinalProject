@@ -13,7 +13,7 @@ namespace e_library.DAL.Entities
 
         public string SurName { get; set; }
         // Навигационное свойство
-        public Book AuthorBook { get; set; }
+        public List<Book> Books { get; set; } = new List<Book>();
 
     }
 }

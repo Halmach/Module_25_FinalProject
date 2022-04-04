@@ -128,5 +128,22 @@ namespace e_library.BLL
                                    Title = lastBook.Title,
             };
         }
+
+        public List<BookModel> GetAllBooksOrderByName()
+        {
+            var result = bookRepository.GetAllBooksOrderByName().Select(
+               b => new BookModel
+               {
+                   ID = b.ID,
+                   Title = b.Title,
+                   Description = b.Description,
+                   ReleaseYser = b.ReleaseYser,
+                   AuthorSurName = b.Author.SurName,
+                   AuthorName = b.Author.Name,
+                   Genre = b.Genre.Name
+               });
+
+            return result.ToList();
+        }
     }
 }

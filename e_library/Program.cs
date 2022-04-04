@@ -26,6 +26,8 @@ namespace e_library
                     Console.WriteLine("10 - Проверка наличия книги на руках у пользователя");
                     Console.WriteLine("11 - Получить количество книг на руках у пользователя");
                     Console.WriteLine("12 - Получить последнюю вышедшую книгу");
+                    Console.WriteLine("13 - Получить список всех книг в алфавитном порядке");
+                    Console.WriteLine("14 - Получить список всех книг, отсортированного в порядке убывания года их выхода");
                     Console.WriteLine("15 - Выйти из программы");
 
                     switch (Console.ReadLine().Trim().ToLower())
@@ -218,6 +220,28 @@ namespace e_library
                             Console.Write("\t");
                             Console.Write(result.AuthorSurName + " " + result.AuthorName);
                             
+                            Console.WriteLine();
+                            break;
+                        }
+                    case "13":
+                        {
+                            var result = libraryServices.GetAllBooksOrderByName();
+
+                            foreach (var item in result)
+                            {
+                                Console.Write(item.ID);
+                                Console.Write("\t");
+                                Console.Write(item.Title);
+                                Console.Write("\t");
+                                Console.Write(item.Description);
+                                Console.Write("\t");
+                                Console.Write(item.ReleaseYser);
+                                Console.Write("\t");
+                                Console.Write(item.Genre);
+                                Console.Write("\t");
+                                Console.Write(item.AuthorSurName + " " + item.AuthorName);
+                                Console.WriteLine();
+                            }
                             Console.WriteLine();
                             break;
                         }

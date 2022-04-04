@@ -13,7 +13,7 @@ namespace e_library.DAL.Repositories
         // Вывести все книги
         public List<Book> SelectAllBooks()
         {
-            return db.Books.ToList();
+            return db.Books.Include(g => g.Genre).Include(a => a.Author).ToList();
         }
 
         // Выбор книги по id
@@ -108,6 +108,12 @@ namespace e_library.DAL.Repositories
 
             return db.Books.Include(g => g.Genre).Include(a => a.Author)
                     .Where(book => book.ReleaseYser == lastYear).FirstOrDefault();
+        }
+
+        // Получить список книг всех книг, отсортированных в алфавитном порядке по названию
+        public List<Book> GetAllBooksOrderByName()
+        {
+            return SelectAllBooks().OrderBy(b => b.Title).ToList();
         }
     }
 }

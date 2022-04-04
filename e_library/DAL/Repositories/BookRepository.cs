@@ -115,5 +115,11 @@ namespace e_library.DAL.Repositories
         {
             return SelectAllBooks().OrderBy(b => b.Title).ToList();
         }
+
+        // Получить список книг всех книг, отсортированных  в порядке убывания года их выхода.
+        public List<Book> GetAllBooksOrderByPublishingYear()
+        {
+            return SelectAllBooks().OrderByDescending(b => b.ReleaseYser).ToList();
+        }
     }
 }

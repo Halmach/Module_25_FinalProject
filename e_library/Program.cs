@@ -12,8 +12,8 @@ namespace e_library
             //LibraryServices libraryServices = new LibraryServices();
             while (true)
             {
-                //try
-                //{
+                try
+                {
                     Console.WriteLine("1 - Добавить пользователя");
                     Console.WriteLine("2 - Добавить книгу");
                     Console.WriteLine("3 - Выдать книгу пользователю");
@@ -245,18 +245,40 @@ namespace e_library
                             Console.WriteLine();
                             break;
                         }
+                    case "14":
+                        {
+                            var result = libraryServices.GetAllBooksOrderByPublishingYear();
+
+                            foreach (var item in result)
+                            {
+                                Console.Write(item.ID);
+                                Console.Write("\t");
+                                Console.Write(item.Title);
+                                Console.Write("\t");
+                                Console.Write(item.Description);
+                                Console.Write("\t");
+                                Console.Write(item.ReleaseYser);
+                                Console.Write("\t");
+                                Console.Write(item.Genre);
+                                Console.Write("\t");
+                                Console.Write(item.AuthorSurName + " " + item.AuthorName);
+                                Console.WriteLine();
+                            }
+                            Console.WriteLine();
+                            break;
+                        }
                     case "15":
                         {
                             return;
                         }
                     }
-                //}
-                //catch (Exception e)
-                //{
-                //    Console.WriteLine(e.Message);
-                //}
-               
             }
+                catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
+
+        }
         }
     }
 }

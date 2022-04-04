@@ -145,5 +145,22 @@ namespace e_library.BLL
 
             return result.ToList();
         }
+
+        public List<BookModel> GetAllBooksOrderByPublishingYear()
+        {
+           var result = bookRepository.GetAllBooksOrderByPublishingYear().Select(
+           b => new BookModel
+           {
+               ID = b.ID,
+               Title = b.Title,
+               Description = b.Description,
+               ReleaseYser = b.ReleaseYser,
+               AuthorSurName = b.Author.SurName,
+               AuthorName = b.Author.Name,
+               Genre = b.Genre.Name
+           });
+
+            return result.ToList();
+        }
     }
 }

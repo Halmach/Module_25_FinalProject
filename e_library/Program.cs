@@ -25,6 +25,7 @@ namespace e_library
                     Console.WriteLine("9 - Проверка наличия книги в библиотеке");
                     Console.WriteLine("10 - Проверка наличия книги на руках у пользователя");
                     Console.WriteLine("11 - Получить количество книг на руках у пользователя");
+                    Console.WriteLine("12 - Получить последнюю вышедшую книгу");
                     Console.WriteLine("15 - Выйти из программы");
 
                     switch (Console.ReadLine().Trim().ToLower())
@@ -198,6 +199,25 @@ namespace e_library
                             int result = libraryServices.GetCountOfBookThatUserGot(userName);
                             Console.WriteLine("Имя пользователя: " + userName);
                             Console.WriteLine("Количество книг на руках: " + result);
+                            Console.WriteLine();
+                            break;
+                        }
+                    case "12":
+                        {
+                            var result = libraryServices.GetLastYearBook();
+
+                            Console.Write(result.ID);
+                            Console.Write("\t");
+                            Console.Write(result.Title);
+                            Console.Write("\t");
+                            Console.Write(result.Description);
+                            Console.Write("\t");
+                            Console.Write(result.ReleaseYser);
+                            Console.Write("\t");
+                            Console.Write(result.Genre);
+                            Console.Write("\t");
+                            Console.Write(result.AuthorSurName + " " + result.AuthorName);
+                            
                             Console.WriteLine();
                             break;
                         }

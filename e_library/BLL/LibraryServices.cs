@@ -114,5 +114,19 @@ namespace e_library.BLL
         {
             return issuedBookRepository.GetCountOfBookThatUserGot(userName);
         }
+
+        public BookModel GetLastYearBook()
+        {
+            var lastBook = bookRepository.GetLastYearBook(); 
+
+            return new BookModel { AuthorName = lastBook.Author.Name,
+                                   Genre = lastBook.Genre.Name,
+                                   AuthorSurName = lastBook.Author.SurName,
+                                   Description = lastBook.Description,
+                                   ID = lastBook.ID,
+                                   ReleaseYser = lastBook.ReleaseYser,
+                                   Title = lastBook.Title,
+            };
+        }
     }
 }

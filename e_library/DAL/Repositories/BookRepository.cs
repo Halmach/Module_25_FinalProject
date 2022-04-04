@@ -101,6 +101,13 @@ namespace e_library.DAL.Repositories
                          book.Author.SurName == authorSurName);
         }
 
-    
+        // Получить последнюю вышедшую книгу
+        public Book GetLastYearBook()
+        {
+            int lastYear = db.Books.Max(b => b.ReleaseYser);
+
+            return db.Books.Include(g => g.Genre).Include(a => a.Author)
+                    .Where(book => book.ReleaseYser == lastYear).FirstOrDefault();
+        }
     }
 }
